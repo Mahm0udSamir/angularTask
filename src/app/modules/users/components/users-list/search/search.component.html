@@ -1,0 +1,9 @@
+<mat-form-field >
+    <input matInput type="text" placeholder="Search By user ID"  [formControl]="searchControl">
+
+    <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

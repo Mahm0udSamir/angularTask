@@ -1,0 +1,12 @@
+<div class="pagination">
+    <button mat-button [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
+    
+        <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <button  mat-button *ngFor="let page of getPages()" [class.active]="currentPage === page" (click)="onPageChange(page)">
+      {{ page }}
+    </button>
+    <button  mat-button [disabled]="currentPage === totalPages" (click)="onPageChange(currentPage + 1)">
+        <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>

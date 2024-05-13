@@ -1,0 +1,28 @@
+<app-header>
+    <app-search (searchChange)="onSearchChange($event)"></app-search>
+</app-header>
+
+<app-loading *ngIf="isLoading$ | async" />
+
+<div class="error" *ngIf="error$ | async as errorMsg">
+    <app-error *ngIf="errorMsg !== null" [errorMsg]="errorMsg" />
+</div>
+
+<div class="container" *ngIf="usersData$ | async as usersData">
+    <mat-grid-list cols="3" rowHeight="400px">
+        <mat-grid-tile *ngFor="let user of usersData.data" [routerLink]="[user.id]">
+            <app-user-card [user]="user" />
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <app-pagination [currentPage]="usersData.page" [totalPages]="usersData.total_pages"
+        (pageChange)="onPageChange($event)" />
+</div>
+
+<div class="container"  *ngIf="user$ | async as user">
+    <mat-grid-list cols="3" rowHeight="400px" >
+        <mat-grid-tile [routerLink]="[user.id]">
+            <app-user-card [user]="user" />
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
